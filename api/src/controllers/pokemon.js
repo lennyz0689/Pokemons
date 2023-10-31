@@ -1,12 +1,20 @@
 const axios = require('axios')
-const { pokemon } = require('../db')
+const { pokemon, type } = require('../db')
 
 const showPokemonController = async () => {
     const result = (await axios.get('https://pokeapi.co/api/v2/pokemon?limit=50')).data
     const apiData = await Promise.all(result.results.map(async (pokemon) => {
         return (await axios.get(pokemon.url)).data
     }))
-    const database = await pokemon.findAll()
+    const database = await pokemon.findAll({
+        include: {
+            model: type,
+            attributes: ['Nombre'],
+            through: {
+                attributes: []
+            }
+        }
+    })
     return cleanApi(apiData, database)
 }
 
@@ -18,8 +26,13 @@ const cleanApi = (api, db) => {
         vida: pokemon.stats[0].base_stat,
         ataque: pokemon.stats[1].base_stat,
         defensa: pokemon.stats[2].base_stat,
+        tipo: pokemon.types.map(types => ({ Nombre: types.type.name }))
     }))
-    return [...db, ...apiclear]
+    if (db === undefined) {
+        return apiclear
+    } else {
+        return [...db, ...apiclear]
+    }
 }
 
 const showPokemonByIdController = async (id) => {
@@ -27,4 +40,26 @@ const showPokemonByIdController = async (id) => {
     return cleanApi([result])
 }
 
-module.exports = { showPokemonController, showPokemonByIdController }
+const showPokemonByIdControllerDb = async (id) => [await pokemon.findByPk(id, {
+    include: {
+        model: type,
+        attributes: ['Nombre'],
+        through: {
+            attributes: []
+        }
+    }
+})]
+
+const showPokemonControllerName = async (name) => {
+    const database = await pokemon.findAll({ where: { nombre: name } })
+    const result = (await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)).data
+    const data = cleanApi([result])
+    return database.concat(data)
+}
+
+module.exports = {
+    showPokemonController,
+    showPokemonByIdController,
+    showPokemonByIdControllerDb,
+    showPokemonControllerName
+}

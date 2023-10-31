@@ -1,9 +1,18 @@
-const { showPokemonController, showPokemonByIdController } = require('../controllers/pokemon')
+const { showPokemonController,
+    showPokemonByIdController,
+    showPokemonByIdControllerDb,
+    showPokemonControllerName } = require('../controllers/pokemon')
 
 const showPokemon = async (req, res) => {
+    const { name } = req.query
     try {
-        const result = await showPokemonController()
-        res.status(200).json(result)
+        if (name === undefined) {
+            const result = await showPokemonController()
+            res.status(200).json(result)
+        } else {
+            const result = await showPokemonControllerName(name)
+            res.status(200).json(result)
+        }
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -12,8 +21,13 @@ const showPokemon = async (req, res) => {
 const showPokemonById = async (req, res) => {
     const { id } = req.params
     try {
-        const result = await showPokemonByIdController(id)
-        res.status(200).json(result)
+        if (isNaN(id) === false) {
+            const result = await showPokemonByIdController(id)
+            res.status(200).json(result)
+        } else {
+            const result = await showPokemonByIdControllerDb(id)
+            res.status(200).json(result)
+        }
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
