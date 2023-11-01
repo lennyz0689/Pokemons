@@ -1,5 +1,6 @@
 const axios = require('axios')
 const { pokemon, type } = require('../db')
+const { Op } = require('sequelize')
 
 const showPokemonController = async () => {
     const result = (await axios.get('https://pokeapi.co/api/v2/pokemon?limit=50')).data
@@ -51,10 +52,33 @@ const showPokemonByIdControllerDb = async (id) => [await pokemon.findByPk(id, {
 })]
 
 const showPokemonControllerName = async (name) => {
-    const database = await pokemon.findAll({ where: { nombre: name } })
-    const result = (await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)).data
-    const data = cleanApi([result])
-    return database.concat(data)
+    const nombre = name.toLowerCase()
+    const database = await pokemon.findAll({
+        where: {
+            nombre: {
+                [Op.iLike]: `%${nombre}%`,
+            }
+        },
+        include: {
+            model: type,
+            attributes: ['Nombre'],
+            through: {
+                attributes: []
+            }
+        }
+    })
+
+    let result = null
+    try {
+        result = (await axios.get(`https://pokeapi.co/api/v2/pokemon/${nombre}`)).data
+    } catch (error) {
+    }
+
+    if (database.length <= 0 && !result) {
+        return 'No se encontraron coincidencias'
+    } else {
+        return result === null ? [...database] : cleanApi([result], database)
+    }
 }
 
 module.exports = {
@@ -62,4 +86,4 @@ module.exports = {
     showPokemonByIdController,
     showPokemonByIdControllerDb,
     showPokemonControllerName
-}
+}   
