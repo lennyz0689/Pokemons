@@ -1,7 +1,8 @@
 const { showPokemonController,
     showPokemonByIdController,
     showPokemonByIdControllerDb,
-    showPokemonControllerName } = require('../controllers/pokemon')
+    showPokemonControllerName,
+    createPokemonController } = require('../controllers/pokemon')
 
 const showPokemon = async (req, res) => {
     const { name } = req.query
@@ -33,4 +34,14 @@ const showPokemonById = async (req, res) => {
     }
 }
 
-module.exports = { showPokemon, showPokemonById }
+const createPokemon = async (req, res) => {
+    const { nombre, imagen, vida, ataque, defensa, tipos } = req.body
+    try {
+        const result = await createPokemonController(nombre, imagen, vida, ataque, defensa, tipos)
+        res.status(201).json(result)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }   
+}
+
+module.exports = { showPokemon, showPokemonById, createPokemon }

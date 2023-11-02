@@ -81,9 +81,26 @@ const showPokemonControllerName = async (name) => {
     }
 }
 
+const createPokemonController = async (nombre, imagen, vida, ataque, defensa, tipos) => {
+    const nuevoPokemon = await pokemon.create({
+        nombre: nombre, 
+        imagen: imagen, 
+        vida: vida, 
+        ataque: ataque, 
+        defensa: defensa
+    })
+    if (tipos.length >= 2) {
+        await nuevoPokemon.addType(tipos)
+        return nuevoPokemon
+    }else{
+        return 'Hubo un error al cargar los datos'
+    }
+}
+
 module.exports = {
     showPokemonController,
     showPokemonByIdController,
     showPokemonByIdControllerDb,
-    showPokemonControllerName
+    showPokemonControllerName,
+    createPokemonController
 }   
