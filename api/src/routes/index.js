@@ -9,7 +9,7 @@ const { type } = require('./types')
 const router = Router();
 
 router.use('/pokemon', pokemon)
-router.use('/type', type)
+router.use('/types', type)
 
 
 module.exports = router;
