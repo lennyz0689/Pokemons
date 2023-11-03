@@ -1,0 +1,30 @@
+.container{
+    background-color: #f5f5f5;
+    margin: 15px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.7)
+}
+
+.container img{
+    display: flex;
+}
+
+.container button{
+    margin-top: 40px;
+    background-color: yellow;
+    color: blue;
+    width: 250px;
+    height: 65px;
+    border: 3px solid red;
+    border-radius: 15px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.container button:hover{
+    background-color: red;
+    color: yellow;
+    border: 3px solid blue;
+}
