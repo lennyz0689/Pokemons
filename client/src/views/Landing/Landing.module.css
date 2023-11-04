@@ -1,5 +1,5 @@
 .container{
-    background-color: #f5f5f5;
+    background-color: #EE3E3E;
     margin: 15px;
     padding: 30px;
     border-radius: 15px;
@@ -12,11 +12,11 @@
 
 .container button{
     margin-top: 40px;
-    background-color: yellow;
-    color: blue;
+    background-color: #FFCB05;
+    color: #3864AA;
     width: 250px;
     height: 65px;
-    border: 3px solid red;
+    border: 3px solid #EE3E3E;
     border-radius: 15px;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.7);
     font-weight: bold;
@@ -24,7 +24,11 @@
 }
 
 .container button:hover{
-    background-color: red;
-    color: yellow;
-    border: 3px solid blue;
+    background-color: #EE3E3E;
+    color: #FFCB05;
+    border: 3px solid #3864AA;
+}
+
+.container:hover{
+    background-color: #3864AA;
 }
