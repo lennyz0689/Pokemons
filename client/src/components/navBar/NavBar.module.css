@@ -1,0 +1,23 @@
+.menu {
+    background-color: #FFCB05;
+    display: flex;
+    width: 25vw;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1%;
+    border-radius: 15px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.7);
+    margin-top: 1.5%;
+    
+}
+
+.menu ul span {
+    color: #3864AA;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.menu ul{
+    display: flex;
+    gap: 50px;
+}

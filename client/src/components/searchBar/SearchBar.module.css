@@ -1,0 +1,24 @@
+.buscar{
+    margin-left: 45px;
+    height: 40px;
+    border-radius: 15px 0px 0px 15px;
+    border: none;
+    margin-top: 5px;
+}
+.buscarButton{
+    background-color: #EE3E3E;
+    border: none;
+    border-radius: 0px 15px 15px 0px;
+    height: 42px;
+    margin-top: 5px;
+    cursor: pointer;
+    color: aliceblue;
+}
+
+::placeholder{
+    color: #3864AA;
+    font-size: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+}

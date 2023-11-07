@@ -3,14 +3,14 @@ const { pokemon, type } = require('../db')
 const { Op } = require('sequelize')
 
 const showPokemonController = async () => {
-    const result = (await axios.get('https://pokeapi.co/api/v2/pokemon?limit=50')).data
+    const result = (await axios.get('https://pokeapi.co/api/v2/pokemon?limit=200')).data
     const apiData = await Promise.all(result.results.map(async (pokemon) => {
         return (await axios.get(pokemon.url)).data
     }))
     const database = await pokemon.findAll({
         include: {
             model: type,
-            attributes: ['Nombre'],
+            attributes: ['nombre'],
             through: {
                 attributes: []
             }
@@ -61,7 +61,7 @@ const showPokemonControllerName = async (name) => {
         },
         include: {
             model: type,
-            attributes: ['Nombre'],
+            attributes: ['nombre'],
             through: {
                 attributes: []
             }

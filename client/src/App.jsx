@@ -1,4 +1,4 @@
-import './App.css'
+//import './App.css'
 import Detail from './views/Detail/Detail'
 import Form from './views/Form/Form'
 import Home from './views/Home/Home'
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Landing />}/>
         <Route path='/home' element={<Home />}/>
-        <Route path='/detail' element={<Detail />}/>
+        <Route path='/detail/:id' element={<Detail />}/>
         <Route path='/form' element={<Form />}/>
       </Routes>
     </>
