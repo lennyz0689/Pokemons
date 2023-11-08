@@ -1,6 +1,6 @@
 import Style from './Card.module.css'
 
-const Card = ({ nombre, imagen, tipos }) => {
+const Card = ({ nombre, imagen, tipos, id }) => {
     return (
         <div className={Style.container}>
             <div className={Style.card}>

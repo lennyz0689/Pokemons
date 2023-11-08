@@ -29,6 +29,21 @@ module.exports = (sequelize) => {
     defensa: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    velocidad: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
+    },
+    altura: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
+    },
+    peso: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0
     }
   }, { timestamps: false });
 };

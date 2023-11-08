@@ -1,18 +1,13 @@
-import { useSelector } from 'react-redux'
-import Style from './CardContainer.module.css'
-import Card from '../card/Card'
-import { Link } from 'react-router-dom'
+import { useSelector } from "react-redux"
+import Card from "../../components/card/Card"
 
-const CardContainer = () => {
-    let pokemons
-    if (useSelector(state => state.pokemonName).length < 1) {
-        pokemons = useSelector(state => state.allPokemons)
-    }else{
-        pokemons = useSelector(state => state.pokemonName)
-    }
 
+const Search = () => {
+    const pokemons = useSelector(state => state.pokemonName)
+    console.log(pokemons);
     return (
-        <section className={Style.container}>
+        <section>
+            <h1>{pokemons.map(p => p.nombre)} </h1>
             {pokemons.map(p => {
                 const tipos = p.types.map(t => t.nombre).join(", ")
                 return (
@@ -30,4 +25,4 @@ const CardContainer = () => {
     )
 }
 
-export default CardContainer
+export default Search

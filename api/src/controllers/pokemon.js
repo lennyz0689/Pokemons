@@ -3,7 +3,7 @@ const { pokemon, type } = require('../db')
 const { Op } = require('sequelize')
 
 const showPokemonController = async () => {
-    const result = (await axios.get('https://pokeapi.co/api/v2/pokemon?limit=200')).data
+    const result = (await axios.get('https://pokeapi.co/api/v2/pokemon?limit=12')).data
     const apiData = await Promise.all(result.results.map(async (pokemon) => {
         return (await axios.get(pokemon.url)).data
     }))
@@ -23,11 +23,14 @@ const cleanApi = (api, db) => {
     const apiclear = api.map(pokemon => ({
         id: pokemon.id,
         nombre: pokemon.name,
-        imagen: pokemon.sprites.front_default,
+        imagen: pokemon.sprites.other.dream_world.front_default,
         vida: pokemon.stats[0].base_stat,
         ataque: pokemon.stats[1].base_stat,
         defensa: pokemon.stats[2].base_stat,
-        tipo: pokemon.types.map(types => ({ Nombre: types.type.name }))
+        velocidad: pokemon.stats[5].base_stat,
+        altura: pokemon.height,
+        peso: pokemon.weight,
+        types: pokemon.types.map(types => ({ nombre: types.type.name }))
     }))
     if (db === undefined) {
         return apiclear

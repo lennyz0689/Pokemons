@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import CardContainer from "../../components/cardContainer/CardContainer"
 import NavBar from "../../components/navBar/NavBar"
 import { useEffect } from "react"
