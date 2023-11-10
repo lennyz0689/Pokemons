@@ -4,7 +4,7 @@
     grid-template-columns: repeat(6, 1fr); /* 5 columnas de igual ancho */; /* Espacio entre las tarjetas */
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 10px;
     width: 93%;
     height: 635px;
     border-radius: 1%;

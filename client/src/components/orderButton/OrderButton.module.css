@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.container button{
+    background-color: #FFCB05;
+    color: #3864AA;
+    border: 0.5px solid #3864AA;
+    cursor: pointer;
+    gap: 5px;
+    margin: 0.5%;
+    padding: 0.50%;
+    margin-bottom: 0px;
+}
+
+.container button:hover{
+    background-color: #EE3E3E;
+    color: aliceblue;
+}

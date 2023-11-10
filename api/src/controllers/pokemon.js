@@ -3,7 +3,7 @@ const { pokemon, type } = require('../db')
 const { Op } = require('sequelize')
 
 const showPokemonController = async () => {
-    const result = (await axios.get('https://pokeapi.co/api/v2/pokemon?limit=12')).data
+    const result = (await axios.get('https://pokeapi.co/api/v2/pokemon?limit=27')).data
     const apiData = await Promise.all(result.results.map(async (pokemon) => {
         return (await axios.get(pokemon.url)).data
     }))
@@ -30,6 +30,7 @@ const cleanApi = (api, db) => {
         velocidad: pokemon.stats[5].base_stat,
         altura: pokemon.height,
         peso: pokemon.weight,
+        created: false,
         types: pokemon.types.map(types => ({ nombre: types.type.name }))
     }))
     if (db === undefined) {
@@ -47,7 +48,7 @@ const showPokemonByIdController = async (id) => {
 const showPokemonByIdControllerDb = async (id) => [await pokemon.findByPk(id, {
     include: {
         model: type,
-        attributes: ['Nombre'],
+        attributes: ['nombre'],
         through: {
             attributes: []
         }
@@ -84,15 +85,19 @@ const showPokemonControllerName = async (name) => {
     }
 }
 
-const createPokemonController = async (nombre, imagen, vida, ataque, defensa, tipos) => {
-    const nuevoPokemon = await pokemon.create({
-        nombre: nombre, 
-        imagen: imagen, 
-        vida: vida, 
-        ataque: ataque, 
-        defensa: defensa
-    })
-    if (tipos.length >= 2) {
+const createPokemonController = async (nombre, imagen, vida, ataque, defensa, velocidad, altura, peso, tipos) => {
+    if (tipos.length >= 2 && !isNaN(parseInt(tipos)))  {
+        const nuevoPokemon = await pokemon.create({
+            nombre: nombre, 
+            imagen: imagen, 
+            vida: vida, 
+            ataque: ataque, 
+            defensa: defensa,
+            velocidad: velocidad,
+            altura: altura,
+            peso: peso,
+            tipos: tipos    
+        })
         await nuevoPokemon.addType(tipos)
         return nuevoPokemon
     }else{

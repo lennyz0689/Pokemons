@@ -4,12 +4,16 @@ import Card from '../card/Card'
 import { Link } from 'react-router-dom'
 
 const CardContainer = () => {
-    let pokemons
-    if (useSelector(state => state.pokemonName).length < 1) {
-        pokemons = useSelector(state => state.allPokemons)
-    }else{
-        pokemons = useSelector(state => state.pokemonName)
+    const pokemonName = useSelector(state => state.pokemonName);
+    const allPokemons = useSelector(state => state.allPokemons);
+
+    if (typeof pokemonName === 'string') {
+        return (
+            alert(pokemonName)
+        );
     }
+
+    let pokemons = pokemonName.length > 0 ? pokemonName : allPokemons;
 
     return (
         <section className={Style.container}>

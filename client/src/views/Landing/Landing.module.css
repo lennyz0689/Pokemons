@@ -1,10 +1,20 @@
-.container{
-    background-color: #EE3E3E;
-    margin: 15px;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.7)
+body{
+    background-image: url('../../assets/pokemon.png');
+    background-size: cover;
 }
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center;     /* Centrar horizontalmente */
+    height: 25vh;
+    background-color: #EE3E3E;
+    border-radius: 15px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.7);
+    width: 25%;
+    margin: 0 auto; /* Centrar horizontalmente */
+    margin-top: 15%;
+  }
 
 .container img{
     display: flex;
@@ -21,6 +31,8 @@
     box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.7);
     font-weight: bold;
     font-size: 24px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container button:hover{

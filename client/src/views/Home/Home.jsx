@@ -1,22 +1,26 @@
 import { useDispatch, useSelector } from "react-redux"
 import CardContainer from "../../components/cardContainer/CardContainer"
-import NavBar from "../../components/navBar/NavBar"
 import { useEffect } from "react"
-import { getPokemon } from "../../Redux/Actions"
+import { cleanCard, getPokemon, getTypes } from "../../Redux/Actions"
+import Paginated from "../../components/paginated/Paginated"
+import OrderButton from "../../components/orderButton/orderButton"
 
 const Home = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
+        dispatch(cleanCard())
         dispatch(getPokemon())
-    },[dispatch])
+        dispatch(getTypes())
+    }, [])
 
 
     return (
         <>
-            <NavBar />
-            <CardContainer/>
+            <OrderButton />
+            <CardContainer />
+            <Paginated />
         </>
     )
 }

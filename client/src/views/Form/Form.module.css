@@ -1,4 +1,46 @@
 .container {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    background-color: #3864AA;
+    justify-content: center;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 700px;
+    border-radius: 15px;
+}
+
+.container input, .container select{
+    width: 300px;
+    height: 20px;
+    margin: 5px;
+    padding: 0.2%;
+    border-radius: 5px;
+    border: none;
+    
+}
+.container label{
+    font-size: 25px;
+    color: #FFCB05;
+}
+
+.container span{
+    color: #830a0a;
+}
+.submit{
+    background-color: #EE3E3E;
+    color: aliceblue;
+    width: 50px !important;
+    height: 40px !important;
+    cursor: pointer;
+}
+
+.container p{
+    background-color: #FFCB05;
+    width: auto;
+    height: auto;
+    padding: 0.5%;
+    border-radius: 5px;
 }

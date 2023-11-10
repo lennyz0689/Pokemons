@@ -35,9 +35,9 @@ const showPokemonById = async (req, res) => {
 }
 
 const createPokemon = async (req, res) => {
-    const { nombre, imagen, vida, ataque, defensa, tipos } = req.body
+    const { nombre, imagen, vida, ataque, defensa, velocidad, altura, peso, tipos } = req.body
     try {
-        const result = await createPokemonController(nombre, imagen, vida, ataque, defensa, tipos)
+        const result = await createPokemonController(nombre, imagen, vida, ataque, defensa, velocidad, altura, peso, tipos)
         res.status(201).json(result)
     } catch (error) {
         res.status(400).json({ error: error.message })
